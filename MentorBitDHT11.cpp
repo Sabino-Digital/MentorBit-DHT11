@@ -33,9 +33,9 @@
 
 #include "MentorBitDHT11.h"
 
-MentorBitDHT11::MentorBitDHT11(uint8_t pin):myDHT(pin, DHT11){
+MentorBitDHT11::MentorBitDHT11(uint8_t pin = 0):myDHT(_port.gpios[0], DHT11){
     myDHT.begin();
-    _dht_pin = pin;
+    _port.gpios[0] = pin;
 }
 
 float MentorBitDHT11::obtenerTemperatura(){
@@ -50,3 +50,11 @@ float MentorBitDHT11::obtenerHumedad(){
     return valor;
 }
 
+void MentorBitDHT11::configPort(const Port& port) {
+
+    _port.type = port.type;
+    _port.location = port.location;
+    _port.gpios[0] = port.gpios[0];
+    _port.gpios[1] = port.gpios[1];
+
+}

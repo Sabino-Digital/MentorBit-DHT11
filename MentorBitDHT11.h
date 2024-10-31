@@ -36,8 +36,9 @@
 
 #include <arduino.h>
 #include <DHT.h>
+#include <MentorPort.h>
 
-class MentorBitDHT11
+class MentorBitDHT11 : public MentorPort
 {
 
     public: 
@@ -46,10 +47,11 @@ class MentorBitDHT11
         
         float obtenerTemperatura();
         float obtenerHumedad();
+        void configPort(const Port& port) override;
 
     private:
 
-        uint8_t _dht_pin;
+        Port _port;
         DHT myDHT;
 };
 
