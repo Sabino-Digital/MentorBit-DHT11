@@ -33,9 +33,9 @@
 
 #include "MentorBitDHT11.h"
 
-MentorBitDHT11::MentorBitDHT11(uint8_t pin = 0):myDHT(_port.gpios[0], DHT11){
+MentorBitDHT11::MentorBitDHT11(uint8_t pin = 0):myDHT(_port.gpios[1], DHT11){
     myDHT.begin();
-    _port.gpios[0] = pin;
+    _port.gpios[1] = pin;
 }
 
 float MentorBitDHT11::obtenerTemperatura(){
