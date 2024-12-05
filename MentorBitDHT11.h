@@ -43,8 +43,8 @@ class MentorBitDHT11 : public MentorPort
 
     public: 
 
-        MentorBitDHT11(uint8_t pin);
-        
+        MentorBitDHT11(uint8_t pin = 0);
+
         float obtenerTemperatura();
         float obtenerHumedad();
         void configPort(const Port& port) override;
@@ -53,6 +53,9 @@ class MentorBitDHT11 : public MentorPort
 
         Port _port;
         DHT myDHT;
+
+        void _reiniciarDHT();
+
 };
 
 #endif

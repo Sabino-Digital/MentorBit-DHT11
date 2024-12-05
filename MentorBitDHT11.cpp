@@ -33,7 +33,7 @@
 
 #include "MentorBitDHT11.h"
 
-MentorBitDHT11::MentorBitDHT11(uint8_t pin = 0):myDHT(_port.gpios[1], DHT11){
+MentorBitDHT11::MentorBitDHT11(uint8_t pin = 0):myDHT(pin, DHT11){
     myDHT.begin();
     _port.gpios[1] = pin;
 }
@@ -56,5 +56,15 @@ void MentorBitDHT11::configPort(const Port& port) {
     _port.location = port.location;
     _port.gpios[0] = port.gpios[0];
     _port.gpios[1] = port.gpios[1];
+
+    _reiniciarDHT();
+
+}
+
+void MentorBitDHT11::_reiniciarDHT()
+{
+
+    myDHT = DHT(_port.gpios[1], DHT11);
+    myDHT.begin();
 
 }
